@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingActivity">
+
+    <LinearLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:shapeAppearanceOverlay="@style/Circular"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            app:strokeColor="#F9A021"
+            app:strokeWidth="2dp"
+            android:scaleType="centerCrop"
+            android:padding="1dp"
+            android:src="@drawable/download">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutusername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:maxEms="10">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/usernamee"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:hint="Username"
+                        android:inputType="text">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutpass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:maxEms="10">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pass"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:hint="Password"
+                        android:inputType="textPassword">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutnama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:maxEms="10">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/namaa"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:hint="Nama"
+                        android:inputType="text">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayouthp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:maxEms="10">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/hp"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:hint="No Hp"
+                        android:inputType="phone">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayouttgl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:maxEms="10">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tgl"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:hint="Tanggal Lahir"
+                        android:inputType="text">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutjk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:maxEms="10">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/jk"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:hint="Jenis Kelamin"
+                        android:inputType="text">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayouttb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:maxEms="10">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tb"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:hint="Tinggi Badan"
+                        android:inputType="text">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutbb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:maxEms="10">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/bb"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:hint="Berat Badan"
+                        android:inputType="text">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Simpan"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#393E46"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginEnd="100dp">
+
+                </Button>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
