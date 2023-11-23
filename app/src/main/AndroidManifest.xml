@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".DetailTrainnerActivity"
+            android:exported="false" />
+        <activity
             android:name=".TambahExerciseActivity"
             android:exported="false" />
         <activity

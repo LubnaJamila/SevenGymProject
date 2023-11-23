@@ -9,6 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -21,7 +33,10 @@ public class TrainnerFragment extends Fragment {
 
     private RecyclerView recycle;
     private iklanAdapter adapt;
+    private TrainnerAdapter adapter;
     private ArrayList<iklan> modelIklanTrain;
+    private ArrayList<trainner> trainners;
+    private RequestQueue requestQueue;
 
     LinearLayoutManager layoutManager;
 
@@ -41,6 +56,37 @@ public class TrainnerFragment extends Fragment {
 
 
     }
+
+//    private void addDatabegin() {
+//        trainners = new ArrayList<>();
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//
+//
+//
+//    }
+//
+//    private void addDatamedium() {
+//        trainners = new ArrayList<>();
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//
+//    }
+//    private void addDataexpert() {
+//        trainners = new ArrayList<>();
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//        trainners.add(new trainner("budi", "50000",R.drawable.train));
+//
+//    }
 
     public TrainnerFragment() {
         // Required empty public constructor
@@ -79,19 +125,99 @@ public class TrainnerFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_trainner, container, false);
         setRecyclerView(view);
+        //setRecycleBegin(view);
+//        setRecycleMedium(view);
+//        setRecycleExpert(view);
+
+        trainners = new ArrayList<>();
+        if(getContext() != null){
+            requestQueue = Volley.newRequestQueue(getContext());
+            //parseJSON();
+            setRecycleBegin(view);
+        }else {
+            Toast.makeText(getContext(), "Tidak Ada Konteks", Toast.LENGTH_SHORT).show();
+        }
         return view;
+    }
+
+    private void parseJSON(){
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Api.urlTrainner, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("data");
+
+                    for (int i = 0; i < jsonArray.length(); i++){
+                        JSONObject hit = jsonArray.getJSONObject(i);
+
+                        String profil = hit.getString("profil_trainner");
+                        String harga = hit.getString("harga_trainner");
+                        String nama_lengkap = hit.getString("nama_lengkap");
+                        String tanggal = hit.getString("tanggal_lahir");
+                        String jenis_kelamin = hit.getString("jenis_kelamin");
+                        String nohp = hit.getString("nohp");
+                        String deskripsi = hit.getString("deskripsi_pelatih");
+                        String tb = hit.getString("tb");
+                        String bb = hit.getString("bb");
+
+                        trainners.add(new trainner(tanggal, deskripsi, tb, bb, jenis_kelamin, profil, nama_lengkap, nohp, harga));
+                    }
+                    adapter = new TrainnerAdapter(getContext(), trainners);
+                    recycle.setAdapter(adapter);
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        requestQueue.add(request);
     }
 
     private void setRecyclerView(View view){
         addData();
 
+
+
         recycle = (RecyclerView) view.findViewById(R.id.recycle_iklan);
         adapt = new iklanAdapter(modelIklanTrain);
         layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        //GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, false);
-        //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        //recycle.setLayoutManager(gridLayoutManager);
         recycle.setLayoutManager(layoutManager);
         recycle.setAdapter(adapt);
+    }
+    private void setRecycleBegin(View view){
+        //addDatabegin();
+        parseJSON();
+
+        recycle = (RecyclerView) view.findViewById(R.id.recycle_trainnerbegin);
+        adapter = new TrainnerAdapter(getContext(), trainners);
+        layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recycle.setLayoutManager(layoutManager);
+        recycle.setAdapter(adapter);
+    }
+
+    private void setRecycleMedium(View view){
+        //addDatamedium();
+
+
+        recycle = (RecyclerView) view.findViewById(R.id.recycle_trainnermedium);
+        adapter = new TrainnerAdapter(getContext(), trainners);
+        layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recycle.setLayoutManager(layoutManager);
+        recycle.setAdapter(adapter);
+    }
+
+    private void setRecycleExpert(View view){
+        //addDataexpert();
+
+        recycle = (RecyclerView) view.findViewById(R.id.recycle_trainnerexpert);
+        adapter = new TrainnerAdapter(getContext(), trainners);
+        layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recycle.setLayoutManager(layoutManager);
+        recycle.setAdapter(adapter);
     }
 }

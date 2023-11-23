@@ -2,6 +2,7 @@ package com.febri.sevengymproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,8 +54,10 @@ public class LoginActivity extends AppCompatActivity {
                 String user = etusername.getText().toString();
                 String pass = etpassword.getText().toString();
 
+                //login(user, pass);
+
                 if(!(user.isEmpty() || pass.isEmpty())){
-                    check(user,pass);
+                    login(user,pass);
                 }else{
                     Toast.makeText(LoginActivity.this, "Isikan Username dan Password", Toast.LENGTH_SHORT).show();
                 }
@@ -82,31 +86,47 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void check(String username, String password){
+    private void login(String username, String password){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.urlLogin + "?username=" + username + "&password=" + password, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Gson gson = new Gson();
+                UserRespon userRespon = gson.fromJson(response.toString(), UserRespon.class);
 
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    String status = obj.getString("status");
+                if (userRespon.getCode()==200){
+                    User user = userRespon.getData().get(0);
+                    String usernm = user.getUsername();
+                    String pss = user.getPassword();
+                    String namleng = user.getNama_pelanggan();
+                    String pp = user.getProfil_pelanggan();
+                    Integer id = user.getId_user();
 
-                    if(status.equals("berhasil")){
-                        String namaPelanggan = obj.getString("nama_pelanggan");
-                        Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
-                        intent.putExtra(KEYNAME, namaPelanggan);
-                        startActivity(intent);
-                        Toast.makeText(LoginActivity.this, "Berhasil Login", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(LoginActivity.this, "Login Gagal", Toast.LENGTH_SHORT).show();
-                    }
-                }catch (JSONException e){
-                    Toast.makeText(LoginActivity.this, "ASD", Toast.LENGTH_SHORT).show();
+                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("username", usernm);
+                    editor.putString("password", pss);
+                    editor.putInt("id_user", id);
+                    editor.apply();
+
+                    Toast.makeText(LoginActivity.this, userRespon.getStatus(), Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(LoginActivity.this, NavigationActivity.class);
+                    intent.putExtra("nama_pelanggan", namleng);
+                    intent.putExtra("profil_pelanggan", pp);
+                    startActivity(intent);
+                    finish();
+
+
+                }else if (userRespon.getCode()==401){
+
+                    Toast.makeText(LoginActivity.this, userRespon.getStatus(), Toast.LENGTH_SHORT).show();
+
+                }else if (userRespon.getCode()==404){
+
+                    Toast.makeText(LoginActivity.this, userRespon.getStatus(), Toast.LENGTH_SHORT).show();
                 }
-
-
 
             }
         }, new Response.ErrorListener() {
@@ -114,10 +134,49 @@ public class LoginActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
                 Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+
             }
         });
         requestQueue.add(stringRequest);
     }
+
+//    private void check(String username, String password){
+//        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+//
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.urlLogin + "?username=" + username + "&password=" + password, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//
+//                try {
+//                    JSONObject obj = new JSONObject(response);
+//                    String status = obj.getString("status");
+//
+//                    if(status.equals("berhasil")){
+//                        String namaPelanggan = obj.getString("nama_pelanggan");
+//                        Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+//                        intent.putExtra(KEYNAME, namaPelanggan);
+//                        startActivity(intent);
+//                        Toast.makeText(LoginActivity.this, "Berhasil Login", Toast.LENGTH_SHORT).show();
+//                    }else {
+//                        Toast.makeText(LoginActivity.this, "Login Gagal", Toast.LENGTH_SHORT).show();
+//                    }
+//                }catch (JSONException e){
+//                    Toast.makeText(LoginActivity.this, "ASD", Toast.LENGTH_SHORT).show();
+//                }
+//
+//
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//
+//                Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        requestQueue.add(stringRequest);
+//    }
     private void getPreferencesData(){
         SharedPreferences sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         if(sp.contains("pref_name")){

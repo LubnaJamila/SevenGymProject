@@ -31,7 +31,7 @@ public class iklanAdapter extends RecyclerView.Adapter<iklanAdapter.iklanViewHol
     public void onBindViewHolder(@NonNull iklanAdapter.iklanViewHolder holder, int position) {
 
         holder.title.setText(list.get(position).getTrainner());
-        holder.back.setImageResource(list.get(position).getPict());
+        holder.back.setImageResource((list.get(position).getPict()));
 
     }
 

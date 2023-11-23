@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -47,17 +48,35 @@ public class NavigationActivity extends AppCompatActivity {
         fprofil = findViewById(R.id.profil);
         wel = findViewById(R.id.welcome);
         nm = findViewById(R.id.nama);
-        Bundle extra = getIntent().getExtras();
+        //Bundle extra = getIntent().getExtras();
 
-        namaPelanggan = extra.getString(KEYNAME);
-        nm.setText(namaPelanggan);
+//        namaPelanggan = extra.getString("nama_pelanggan");
+//        nm.setText(namaPelanggan);
+        String nama = getIntent().getStringExtra("nama_pelanggan");
+        nm.setText(nama);
+        String pp = getIntent().getStringExtra("profil_pelanggan");
+        if (pp != null){
+            String urlPP = "http://"+Api.ip+"/SevenGym/img/" + pp;
+            Glide.with(this).load(urlPP).into(fprofil);
+
+        }
         bottomNavigationView = findViewById(R.id.nav);
         set = findViewById(R.id.pengaturan);
         set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+//                Intent intent = new Intent(NavigationActivity.this, SettingActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+        fprofil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(NavigationActivity.this, SettingActivity.class);
                 startActivity(intent);
+
             }
         });
 

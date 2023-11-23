@@ -23,6 +23,7 @@
             android:layout_marginStart="24dp"/>
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/pp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:shapeAppearanceOverlay="@style/Circular"
@@ -43,6 +44,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/id_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="id user"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutusername"
@@ -83,7 +90,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayoutnama"
+                    android:id="@+id/textInputLayoutnamapel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
@@ -197,6 +204,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
+                    android:id="@+id/save"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Simpan"
