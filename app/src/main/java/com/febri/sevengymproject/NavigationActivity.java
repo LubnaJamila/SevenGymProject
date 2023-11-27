@@ -8,17 +8,27 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -32,9 +42,9 @@ public class NavigationActivity extends AppCompatActivity {
     private ShapeableImageView fprofil;
     BottomNavigationView  bottomNavigationView;
     private TextView wel, nm, jd;
-
+    SharedPreferences preferences;
     private ImageView set;
-    String namaPelanggan;
+    String usernma, passwr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,18 +58,25 @@ public class NavigationActivity extends AppCompatActivity {
         fprofil = findViewById(R.id.profil);
         wel = findViewById(R.id.welcome);
         nm = findViewById(R.id.nama);
+
+        preferences = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+        usernma = preferences.getString("username", "");
+        passwr = preferences.getString("password", "");
+
+        getData();
+
         //Bundle extra = getIntent().getExtras();
 
 //        namaPelanggan = extra.getString("nama_pelanggan");
 //        nm.setText(namaPelanggan);
-        String nama = getIntent().getStringExtra("nama_pelanggan");
-        nm.setText(nama);
-        String pp = getIntent().getStringExtra("profil_pelanggan");
-        if (pp != null){
-            String urlPP = "http://"+Api.ip+"/SevenGym/img/" + pp;
-            Glide.with(this).load(urlPP).into(fprofil);
-
-        }
+//        String nama = getIntent().getStringExtra("nama_pelanggan");
+//        nm.setText(nama);
+//        String pp = getIntent().getStringExtra("profil_pelanggan");
+//        if (pp != null){
+//            String urlPP = "http://"+Api.ip+"/SevenGym/img/" + pp;
+//            Glide.with(this).load(urlPP).into(fprofil);
+//
+//        }
         bottomNavigationView = findViewById(R.id.nav);
         set = findViewById(R.id.pengaturan);
         set.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +93,7 @@ public class NavigationActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(NavigationActivity.this, SettingActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -103,6 +121,47 @@ public class NavigationActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.framelayout, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void getData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.urlLogin + "?username=" + usernma + "&password=" + passwr, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Gson gson = new Gson();
+                UserRespon userRespon = gson.fromJson(response.toString(), UserRespon.class);
+
+                if (userRespon.getCode() == 200) {
+
+                    User user = userRespon.getData().get(0);
+                    nm.setText(user.getNama_pelanggan());
+                    String profil = user.getProfil_pelanggan();
+                    if (profil != null) {
+                        String urlPP = "http://" + Api.ip + "/SevenGym/img/" + profil;
+                        Glide.with(getApplicationContext()).load(urlPP).into(fprofil);
+                    }
+
+
+                } else if (userRespon.getCode() == 401) {
+
+                    Toast.makeText(NavigationActivity.this, userRespon.getStatus(), Toast.LENGTH_SHORT).show();
+
+                } else if (userRespon.getCode() == 404) {
+
+                    Toast.makeText(NavigationActivity.this, userRespon.getStatus(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(NavigationActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+        requestQueue.add(stringRequest);
     }
 
 //    private void addData() {

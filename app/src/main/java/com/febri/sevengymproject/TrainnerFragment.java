@@ -157,10 +157,10 @@ public class TrainnerFragment extends Fragment {
                         String jenis_kelamin = hit.getString("jenis_kelamin");
                         String nohp = hit.getString("nohp");
                         String deskripsi = hit.getString("deskripsi_pelatih");
-                        String tb = hit.getString("tb");
-                        String bb = hit.getString("bb");
+//                        String tb = hit.getString("tb");
+//                        String bb = hit.getString("bb");
 
-                        trainners.add(new trainner(tanggal, deskripsi, tb, bb, jenis_kelamin, profil, nama_lengkap, nohp, harga));
+                        trainners.add(new trainner(tanggal, deskripsi, jenis_kelamin, profil, nama_lengkap, nohp, harga));
                     }
                     adapter = new TrainnerAdapter(getContext(), trainners);
                     recycle.setAdapter(adapter);
@@ -200,24 +200,24 @@ public class TrainnerFragment extends Fragment {
         recycle.setAdapter(adapter);
     }
 
-    private void setRecycleMedium(View view){
-        //addDatamedium();
-
-
-        recycle = (RecyclerView) view.findViewById(R.id.recycle_trainnermedium);
-        adapter = new TrainnerAdapter(getContext(), trainners);
-        layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recycle.setLayoutManager(layoutManager);
-        recycle.setAdapter(adapter);
-    }
-
-    private void setRecycleExpert(View view){
-        //addDataexpert();
-
-        recycle = (RecyclerView) view.findViewById(R.id.recycle_trainnerexpert);
-        adapter = new TrainnerAdapter(getContext(), trainners);
-        layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recycle.setLayoutManager(layoutManager);
-        recycle.setAdapter(adapter);
-    }
+//    private void setRecycleMedium(View view){
+//        //addDatamedium();
+//
+//
+//        recycle = (RecyclerView) view.findViewById(R.id.recycle_trainnermedium);
+//        adapter = new TrainnerAdapter(getContext(), trainners);
+//        layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        recycle.setLayoutManager(layoutManager);
+//        recycle.setAdapter(adapter);
+//    }
+//
+//    private void setRecycleExpert(View view){
+//        //addDataexpert();
+//
+//        recycle = (RecyclerView) view.findViewById(R.id.recycle_trainnerexpert);
+//        adapter = new TrainnerAdapter(getContext(), trainners);
+//        layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        recycle.setLayoutManager(layoutManager);
+//        recycle.setAdapter(adapter);
+//    }
 }

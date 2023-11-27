@@ -67,11 +67,11 @@ public class TrainnerAdapter extends RecyclerView.Adapter<TrainnerAdapter.Trainn
             intent.putExtra("harga", trainners.get(position).getHarga_trainner());
             intent.putExtra("nama_lengkap", trainners.get(position).getNama_lengkap());
             intent.putExtra("tanggal", trainners.get(position).getTanggal_lahir());
-            intent.putExtra("jenis_kelamin", trainners.get(position).getTanggal_lahir());
+            intent.putExtra("jenis_kelamin", trainners.get(position).getJenis_kelamin());
             intent.putExtra("nohp", trainners.get(position).getNohp());
             intent.putExtra("deskripsi", trainners.get(position).getDeskripsi_pelatih());
-            intent.putExtra("tb", trainners.get(position).getTb());
-            intent.putExtra("bb", trainners.get(position).getBb());
+//            intent.putExtra("tb", trainners.get(position).getTb());
+//            intent.putExtra("bb", trainners.get(position).getBb());
             context.startActivity(intent);
 
         }

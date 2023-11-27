@@ -14,11 +14,11 @@ public class trainner {
     String nama_lengkap;
     String harga_trainner;
 
-    public trainner(String tanggal_lahir, String deskripsi_pelatih, String tb, String bb, String jenis_kelamin, String profil_trainner,  String nama_lengkap, String nohp, String harga_trainner) {
+    public trainner(String tanggal_lahir, String deskripsi_pelatih, String jenis_kelamin, String profil_trainner,  String nama_lengkap, String nohp, String harga_trainner) {
         this.tanggal_lahir = tanggal_lahir;
         this.deskripsi_pelatih = deskripsi_pelatih;
-        this.tb = tb;
-        this.bb = bb;
+//        this.tb = tb;
+//        this.bb = bb;
         this.jenis_kelamin = jenis_kelamin;
         this.profil_trainner = profil_trainner;
         this.nohp = nohp;

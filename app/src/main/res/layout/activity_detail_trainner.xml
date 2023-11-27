@@ -44,144 +44,161 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nama"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="20dp"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Nama"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:layout_marginTop="30dp"-->
+<!--                    android:layout_marginStart="20dp"/>-->
                 <TextView
                     android:id="@+id/nm"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingStart="10dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/outline"/>
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tanggal Lahir"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"/>
+                    android:paddingStart="10dp"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="16dp"
+                    android:hint="Nama"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Tanggal Lahir"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:layout_marginStart="20dp"/>-->
                 <TextView
                     android:id="@+id/lahir"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingStart="10dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/outline"/>
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jenis Kelamin"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"/>
+                    android:paddingStart="10dp"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="16dp"
+                    android:hint="Tanggal Lahir"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Jenis Kelamin"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:layout_marginStart="20dp"/>-->
                 <TextView
                     android:id="@+id/gender"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingStart="10dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/outline"/>
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Harga"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"/>
+                    android:paddingStart="10dp"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="16dp"
+                    android:hint="Jenis Kelamin"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Harga"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:layout_marginStart="20dp"/>-->
                 <TextView
                     android:id="@+id/harga"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingStart="10dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/outline"/>
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Deskripsi"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"/>
+                    android:paddingStart="10dp"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="16dp"
+                    android:hint="Harga"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Deskripsi"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:layout_marginStart="20dp"/>-->
                 <TextView
                     android:id="@+id/deskripsi"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingStart="10dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/outline"/>
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No Hp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"/>
+                    android:paddingStart="10dp"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="16dp"
+                    android:hint="Deskripsi"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="No Hp"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:layout_marginStart="20dp"/>-->
                 <TextView
                     android:id="@+id/nohp"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingStart="10dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/outline"/>
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tinggi badan"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"/>
-                <TextView
-                    android:id="@+id/tingban"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
                     android:paddingStart="10dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="0dp"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="16dp"
+                    android:hint="No Hp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/outline"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Berat Badan"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"/>
-                <TextView
-                    android:id="@+id/berban"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:paddingStart="10dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/outline"/>
+                    android:layout_marginEnd="20dp"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Tinggi badan"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:layout_marginStart="20dp"/>-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tingban"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:paddingStart="10dp"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_marginEnd="20dp"-->
+<!--                    android:background="@drawable/outline"/>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Berat Badan"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:layout_marginStart="20dp"/>-->
+<!--                <TextView-->
+<!--                    android:id="@+id/berban"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:paddingStart="10dp"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:layout_marginTop="0dp"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_marginEnd="20dp"-->
+<!--                    android:background="@drawable/outline"/>-->
             </LinearLayout>
         </ScrollView>
+
+        <Button
+            android:id="@+id/wa_trainner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="250dp"
+            android:text="Hubugi trainner"
+            android:textSize="16dp"
+            android:drawableEnd="@drawable/whatsapp"
+            android:backgroundTint="#393E46"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

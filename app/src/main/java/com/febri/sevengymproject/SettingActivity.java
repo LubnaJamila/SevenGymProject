@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -38,6 +39,7 @@ public class SettingActivity extends AppCompatActivity {
     EditText id;
     ShapeableImageView PP;
     Button sv;
+    ImageView balek;
 
     private SharedPreferences sharedPreferences;
 
@@ -60,6 +62,7 @@ public class SettingActivity extends AppCompatActivity {
         BB = findViewById(R.id.bb);
         PP = findViewById(R.id.pp);
         sv = findViewById(R.id.save);
+        balek = findViewById(R.id.kembali);
 
         sharedPreferences = getApplicationContext().getSharedPreferences("user", Context.MODE_PRIVATE);
         usernma = sharedPreferences.getString("username", "");
@@ -72,6 +75,15 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 update();
+            }
+        });
+
+        balek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -197,10 +209,14 @@ public class SettingActivity extends AppCompatActivity {
                    int code = jsonObj.getInt("code");
                    String status = jsonObj.getString("status");
                    if(code==200){
+                       SharedPreferences.Editor editor = sharedPreferences.edit();
+                       editor.putString("username", Username);
+                       editor.apply();
                        //getData();
                        Toast.makeText(SettingActivity.this, status, Toast.LENGTH_SHORT).show();
-                       Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+                       Intent intent = new Intent(getApplicationContext(), NavigationActivity.class);
                        startActivity(intent);
+                       finish();
                    }else {
                        Toast.makeText(SettingActivity.this, "gagal", Toast.LENGTH_SHORT).show();
                    }
