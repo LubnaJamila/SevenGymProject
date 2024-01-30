@@ -4,11 +4,25 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -20,7 +34,9 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private exerciseAdapter adapter;
-    private ArrayList<exercise> modelExerciseArrayList;
+    private ArrayList<exercise> Exercise;
+    private RequestQueue queue;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,22 +47,22 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private void addData() {
-        modelExerciseArrayList = new ArrayList<>();
-        modelExerciseArrayList.add(new exercise("Exercise 1", R.drawable.ic_done));
-        modelExerciseArrayList.add(new exercise("Exercise 2", 0));
-        modelExerciseArrayList.add(new exercise("Exercise 3", R.drawable.ic_done));
-        modelExerciseArrayList.add(new exercise("Exercise 4", R.drawable.ic_done));
-        modelExerciseArrayList.add(new exercise("Exercise 1", R.drawable.ic_done));
-        modelExerciseArrayList.add(new exercise("Exercise 2", 0));
-        modelExerciseArrayList.add(new exercise("Exercise 3", R.drawable.ic_done));
-        modelExerciseArrayList.add(new exercise("Exercise 4", R.drawable.ic_done));
-        modelExerciseArrayList.add(new exercise("Exercise 1", R.drawable.ic_done));
-        modelExerciseArrayList.add(new exercise("Exercise 2", 0));
-        modelExerciseArrayList.add(new exercise("Exercise 3", R.drawable.ic_done));
-        modelExerciseArrayList.add(new exercise("Exercise 4", R.drawable.ic_done));
-
-    }
+//    private void addData() {
+//        Exercise = new ArrayList<>();
+//        Exercise.add(new exercise("Beginner"));
+//        Exercise.add(new exercise("Medium"));
+//        Exercise.add(new exercise("Expert"));
+////        modelExerciseArrayList.add(new exercise("Exercise 4", R.drawable.ic_done));
+////        modelExerciseArrayList.add(new exercise("Exercise 1", R.drawable.ic_done));
+////        modelExerciseArrayList.add(new exercise("Exercise 2", 0));
+////        modelExerciseArrayList.add(new exercise("Exercise 3", R.drawable.ic_done));
+////        modelExerciseArrayList.add(new exercise("Exercise 4", R.drawable.ic_done));
+////        modelExerciseArrayList.add(new exercise("Exercise 1", R.drawable.ic_done));
+////        modelExerciseArrayList.add(new exercise("Exercise 2", 0));
+////        modelExerciseArrayList.add(new exercise("Exercise 3", R.drawable.ic_done));
+////        modelExerciseArrayList.add(new exercise("Exercise 4", R.drawable.ic_done));
+//
+//    }
 
     public HomeFragment() {
         // Required empty public constructor
@@ -84,19 +100,57 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        setRecyclerView(view);
+        //setRecyclerView(view);
+        Exercise = new ArrayList<>();
+        if(getContext() != null){
+            queue = Volley.newRequestQueue(getContext());
+            //parseJSON();
+            setRecyclerView(view);
+        }else {
+            Toast.makeText(getContext(), "Tidak Ada Konteks", Toast.LENGTH_SHORT).show();
+        }
         return view;
     }
 
-    private void setRecyclerView(View view){
-        addData();
+    private void parseJSON(){
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Api.urlExercise, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("data");
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycle_exercise);
-        adapter = new exerciseAdapter(modelExerciseArrayList);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
-        //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(gridLayoutManager);
-        //recyclerView.setLayoutManager(layoutManager);
+                    for (int i = 0; i < jsonArray.length(); i++){
+                        JSONObject hit = jsonArray.getJSONObject(i);
+
+                        String exercises = hit.getString("nama_paket");
+                        String id = hit.getString("id_paket");
+                        //String gambar = hit.getString("gambar");
+
+                        Exercise.add(new exercise(id, exercises));
+                    }
+                    adapter = new exerciseAdapter(getContext(), Exercise);
+                    recyclerView.setAdapter(adapter);
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        queue.add(request);
+    }
+
+    private void setRecyclerView(View view){
+        parseJSON();
+       //addData();
+
+        recyclerView = view.findViewById(R.id.recycle_exercise);
+        adapter = new exerciseAdapter(getContext(), Exercise);
+        recyclerView.setLayoutManager( new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
     }
 }

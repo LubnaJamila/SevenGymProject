@@ -5,14 +5,14 @@
         android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Home"
-        android:icon="@drawable/ic_home"/>
-    <item
-        android:id="@+id/custom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:title="Custom Exercise"
+        android:title="Exercise"
         android:icon="@drawable/ic_custom"/>
+<!--    <item-->
+<!--        android:id="@+id/custom"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:title="Custom Exercise"-->
+<!--        android:icon="@drawable/ic_custom"/>-->
     <item
         android:id="@+id/trainner"
         android:layout_width="wrap_content"

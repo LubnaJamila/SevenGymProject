@@ -24,6 +24,7 @@
 
 
         <ImageView
+            android:id="@+id/cov"
             android:layout_width="153dp"
             android:layout_height="153dp"
             android:layout_marginTop="20dp"

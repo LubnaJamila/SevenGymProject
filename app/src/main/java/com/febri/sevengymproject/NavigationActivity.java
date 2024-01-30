@@ -1,6 +1,7 @@
 package com.febri.sevengymproject;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -33,7 +35,9 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 public class NavigationActivity extends AppCompatActivity {
-    private String KEYNAME = "NAMA_PELANGGAN";
+    private long backPress;
+    private Toast backToast;
+
 //    private RecyclerView recyclerView;
 //    private exerciseAdapter adapter;
 //    private ArrayList<exercise> modelExerciseArrayList;
@@ -84,6 +88,7 @@ public class NavigationActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                Intent intent = new Intent(NavigationActivity.this, SettingActivity.class);
 //                startActivity(intent);
+                LogoutMenu(NavigationActivity.this);
             }
         });
 
@@ -93,7 +98,7 @@ public class NavigationActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(NavigationActivity.this, SettingActivity.class);
                 startActivity(intent);
-                finish();
+//                finish();
 
             }
         });
@@ -104,9 +109,9 @@ public class NavigationActivity extends AppCompatActivity {
                 if(item.getItemId() == R.id.home){
                     getFragment(new HomeFragment());
                     return true;
-                } else if (item.getItemId() == R.id.custom) {
-                    getFragment(new CustomExerciseFragment());
-                    return true;
+//                } else if (item.getItemId() == R.id.custom) {
+//                    getFragment(new CustomExerciseFragment());
+//                    return true;
                 }else if(item.getItemId() == R.id.trainner){
                     getFragment(new TrainnerFragment());
                     return true;
@@ -114,6 +119,36 @@ public class NavigationActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void LogoutMenu(NavigationActivity navigationActivity) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(navigationActivity);
+        builder.setTitle("Logout");
+        builder.setMessage("Apakah anda yakin ingin keluar?");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(backPress + 2000 > System.currentTimeMillis()){
+            backToast.cancel();
+            super.onBackPressed();
+        }else {
+            Toast.makeText(getBaseContext(), "Klik dua kali untuk keluar", Toast.LENGTH_LONG).show();
+        }
+        backPress = System.currentTimeMillis();
     }
 
     private void getFragment(Fragment fragment){

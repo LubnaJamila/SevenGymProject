@@ -1,27 +1,39 @@
 package com.febri.sevengymproject;
 
-public class exercise {
-    private String exercise;
-    private int gambar;
+import java.io.Serializable;
 
-    public exercise(String exercise, int gambar) {
-        this.exercise = exercise;
-        this.gambar = gambar;
+public class exercise implements Serializable {
+    String id_paket;
+    String nama_paket;
+//    String gambar;
+
+    public exercise(String id_paket, String nama_paket) {
+        this.id_paket = id_paket;
+        this.nama_paket = nama_paket;
+//        this.gambar = gambar;
     }
 
-    public String getExercise() {
-        return exercise;
+    public String getId_paket() {
+        return id_paket;
     }
 
-    public void setExercise(String exercise) {
-        this.exercise = exercise;
+    public void setId_paket(String id_paket) {
+        this.id_paket = id_paket;
     }
 
-    public int getGambar() {
-        return gambar;
+    public String getNama_paket() {
+        return nama_paket;
     }
 
-    public void setGambar(int gambar) {
-        this.gambar = gambar;
+    public void setExercise(String nama_paket) {
+        this.nama_paket = nama_paket;
     }
+
+//    public String getGambar() {
+//        return gambar;
+//    }
+//
+//    public void setGambar(String gambar) {
+//        this.gambar = gambar;
+//    }
 }

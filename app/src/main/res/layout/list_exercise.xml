@@ -13,11 +13,12 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/gbr"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:src="@drawable/pushup">
+            android:src="@drawable/pushup_detail">
 
         </ImageView>
 
@@ -29,6 +30,12 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/idex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/lth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -56,6 +63,7 @@
                     android:layout_marginTop="2dp"/>
 
                 <TextView
+                    android:id="@+id/wkt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="45"
@@ -77,6 +85,7 @@
                     android:layout_marginTop="2dp"/>
 
                 <TextView
+                    android:id="@+id/rp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2"

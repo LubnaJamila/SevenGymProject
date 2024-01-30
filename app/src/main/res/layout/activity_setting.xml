@@ -37,6 +37,14 @@
             android:src="@drawable/download">
 
         </com.google.android.material.imageview.ShapeableImageView>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ubah_prof"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_up"
+            android:layout_gravity="center">
+
+        </com.google.android.material.imageview.ShapeableImageView>
 
         <ScrollView
             android:layout_width="match_parent"

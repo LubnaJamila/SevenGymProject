@@ -18,7 +18,7 @@ public class DetailTrainnerActivity extends AppCompatActivity {
     TextView nama, tanggal, jenis_kel, harga, desk, noHp, tinggi, berat;
     ShapeableImageView profil_trainner;
     Button hubungi;
-    String whatsappUser = "+6285204967688";
+   // String whatsappUser = "+6285204967688";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class DetailTrainnerActivity extends AppCompatActivity {
         hubungi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://api.whatsapp.com/send?phone=" + whatsappUser;
+                String url = "https://api.whatsapp.com/send?phone=" + NoHp;
                 try {
                     PackageManager pm = getApplicationContext().getPackageManager();
                     pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);

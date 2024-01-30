@@ -11,15 +11,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.ArrayList;
 
 public class TrainnerAdapter extends RecyclerView.Adapter<TrainnerAdapter.TrainnerViewHolder> {
     private static ArrayList<trainner>trainners;
     private static Context context;
+    RequestOptions option;
 
     public TrainnerAdapter(Context context, ArrayList<trainner>trainners) {
         this.trainners = trainners;
         this.context = context;
+
+        //Request option for glide
+        option = new RequestOptions().centerCrop().placeholder(R.drawable.background_train).error(R.drawable.profil);
     }
 
     @NonNull
@@ -34,6 +41,13 @@ public class TrainnerAdapter extends RecyclerView.Adapter<TrainnerAdapter.Trainn
     public void onBindViewHolder(@NonNull TrainnerAdapter.TrainnerViewHolder holder, int position) {
         trainner trainner = trainners.get(position);
 
+        String gambar = trainner.getProfil_trainner();
+        if (gambar != null) {
+            //encodImage = profil;
+            String urlPP = "http://" + Api.ip + "/SevenGym/img/" + gambar;
+
+            Glide.with(context).load(urlPP).apply(option).into(holder.profil_train);
+        }
         //holder.profil_train.setImageResource(Integer.parseInt(trainner.getProfil_trainner()));
         holder.nama.setText(trainner.getNama_lengkap());
         holder.harga.setText(trainner.getHarga_trainner());
@@ -46,13 +60,13 @@ public class TrainnerAdapter extends RecyclerView.Adapter<TrainnerAdapter.Trainn
     }
 
     public static class TrainnerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        //ImageView profil_train;
+        ImageView profil_train;
         TextView nama, harga;
 
         public TrainnerViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //profil_train = itemView.findViewById(R.id.fototrain);
+            profil_train = itemView.findViewById(R.id.fototrain);
             nama = itemView.findViewById(R.id.namatrain);
             harga = itemView.findViewById(R.id.hargatrain);
 

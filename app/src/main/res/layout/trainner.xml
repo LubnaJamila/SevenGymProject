@@ -16,8 +16,8 @@
             android:id="@+id/fototrain"
             android:layout_width="match_parent"
             android:layout_height="91dp"
-            android:src="@drawable/train"
-            android:layout_marginTop="5dp"/>
+            android:background="@drawable/background_train"
+            android:layout_marginTop="0dp"/>
 
         <TextView
             android:id="@+id/namatrain"
